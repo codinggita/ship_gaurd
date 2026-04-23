@@ -196,8 +196,7 @@ ShipGuard provides a practical and scalable solution to logistics challenges usi
 
 ## Authors
 
-- Your Name  
-- Team Members (if any)  
+- Aryan Sabasana   
 
 ---
 
