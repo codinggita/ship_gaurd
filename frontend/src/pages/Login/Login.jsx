@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../../context/AuthContext";
 
 const FONTS = "https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Share+Tech+Mono&family=Rajdhani:wght@400;500;600;700&display=swap";
 const mono  = { fontFamily: "'Share Tech Mono', monospace" };
@@ -9,10 +10,12 @@ const BOOT_LINES = ["> BOOT_SEQUENCE: OK", "> NETWORK_SYNC: ACTIVE", "> FIREWALL
 
 export default function Login() {
   const navigate = useNavigate();
+  const { login } = useAuth();
   const [showPass, setShowPass] = useState(false);
   const [form, setForm]         = useState({ id: "", pass: "" });
   const [bootIdx, setBootIdx]   = useState(0);
   const [scanning, setScanning] = useState(false);
+  const [errorMsg, setErrorMsg] = useState("");
 
   useEffect(() => {
     const link = document.createElement("link");
@@ -27,10 +30,33 @@ export default function Login() {
     return () => clearTimeout(t);
   }, [bootIdx]);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setScanning(true);
-    setTimeout(() => navigate("/dashboard"), 1200);
+    setErrorMsg("");
+    
+    try {
+      const res = await fetch("http://localhost:5000/api/auth/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email: form.id, password: form.pass }),
+      });
+      
+      const data = await res.json();
+      
+      if (res.ok) {
+        setTimeout(() => {
+          login(data, data.token);
+          navigate("/dashboard");
+        }, 800);
+      } else {
+        setScanning(false);
+        setErrorMsg(data.message || "AUTHENTICATION FAILED");
+      }
+    } catch (error) {
+      setScanning(false);
+      setErrorMsg("SERVER UNREACHABLE");
+    }
   };
 
   return (
@@ -159,6 +185,11 @@ export default function Login() {
 
             {/* Form */}
             <form onSubmit={handleSubmit} className="px-10 pt-8 pb-7 space-y-6">
+              {errorMsg && (
+                <div className="bg-[#B91C1C]/10 border border-[#B91C1C] text-[#FF5A5A] p-3 text-xs tracking-[2px]" style={mono}>
+                  ERROR: {errorMsg}
+                </div>
+              )}
 
               {/* OPERATOR_ID */}
               <div>

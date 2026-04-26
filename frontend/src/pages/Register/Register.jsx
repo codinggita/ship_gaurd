@@ -14,6 +14,7 @@ export default function Register() {
   const [form, setForm]             = useState({ name: "", email: "", pass: "", confirm: "" });
   const [bootIdx, setBootIdx]       = useState(0);
   const [scanning, setScanning]     = useState(false);
+  const [errorMsg, setErrorMsg]     = useState("");
 
   useEffect(() => {
     const link = document.createElement("link");
@@ -28,10 +29,53 @@ export default function Register() {
     return () => clearTimeout(t);
   }, [bootIdx]);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    
+    // Email validation
+    const emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+    if (!emailRegex.test(form.email)) {
+      setErrorMsg("INVALID_EMAIL_FORMAT");
+      return;
+    }
+
+    // Password length validation
+    if (form.pass.length < 8) {
+      setErrorMsg("PASSCODE_TOO_SHORT_MIN_8_CHAR");
+      return;
+    }
+
+    if (form.pass !== form.confirm) {
+      setErrorMsg("PASSCODES DO NOT MATCH");
+      return;
+    }
+
     setScanning(true);
-    setTimeout(() => navigate("/login"), 1200);
+    setErrorMsg("");
+
+    try {
+      const res = await fetch("http://localhost:5000/api/auth/register", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ 
+          username: form.name, 
+          email: form.email, 
+          password: form.pass 
+        }),
+      });
+      
+      const data = await res.json();
+      
+      if (res.ok) {
+        setTimeout(() => navigate("/login"), 800);
+      } else {
+        setScanning(false);
+        setErrorMsg(data.message || "REGISTRATION FAILED");
+      }
+    } catch (error) {
+      setScanning(false);
+      setErrorMsg("SERVER UNREACHABLE");
+    }
   };
 
   return (
@@ -147,6 +191,11 @@ export default function Register() {
 
             {/* Form */}
             <form onSubmit={handleSubmit} className="px-10 pt-8 pb-7 space-y-5">
+              {errorMsg && (
+                <div className="bg-[#B91C1C]/10 border border-[#B91C1C] text-[#FF5A5A] p-3 text-xs tracking-[2px]" style={mono}>
+                  ERROR: {errorMsg}
+                </div>
+              )}
 
               {/* ENTITY_NAME */}
               <div>
