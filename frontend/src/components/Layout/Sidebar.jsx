@@ -33,10 +33,13 @@ export default function Sidebar() {
       </div>
 
       <div className="p-4 border-t border-sg-border flex flex-col gap-4">
-        <button className="w-full bg-sg-red/10 border border-sg-red text-sg-red hover:bg-sg-red hover:text-white transition-all uppercase font-bold tracking-widest text-sm py-3 flex items-center justify-center gap-2 glow-red sharp-border">
+        <NavLink 
+          to="/claims"
+          className="w-full bg-sg-red/10 border border-sg-red text-sg-red hover:bg-sg-red hover:text-white transition-all uppercase font-bold tracking-widest text-sm py-3 flex items-center justify-center gap-2 glow-red sharp-border"
+        >
           <PlusSquare className="w-4 h-4" />
           Init_New_Claim
-        </button>
+        </NavLink>
 
         <div className="flex flex-col gap-2 mt-2">
           <a href="#" className="flex items-center gap-2 text-xs uppercase text-sg-text-muted hover:text-sg-text font-mono tracking-widest transition-colors">
