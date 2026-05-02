@@ -56,6 +56,35 @@ A terminal-style feed that categorizes events by priority (CRITICAL, WARNING, IN
 
 ---
 
+---
+
+## 📂 Project Structure
+
+```bash
+ship_gaurd/
+├── backend/                # Express.js Server
+│   ├── src/
+│   │   ├── controllers/    # API Logic
+│   │   ├── middleware/     # Auth & Security
+│   │   ├── routes/         # Endpoint Definitions
+│   │   └── server.js       # Entry Point
+│   └── package.json
+├── frontend/               # React.js Terminal
+│   ├── public/             # SEO & Static Assets
+│   │   ├── robots.txt
+│   │   └── sitemap.xml
+│   ├── src/
+│   │   ├── components/     # UI Components
+│   │   │   ├── Common/     # SEO & Shared
+│   │   │   └── Layout/     # Sidebar & Navbar
+│   │   ├── context/        # Auth State
+│   │   ├── pages/          # Dashboard Terminals
+│   │   ├── routes/         # Navigation
+│   │   └── main.jsx        # Entry Point
+│   └── package.json
+└── README.md
+```
+
 ## 🛠️ Installation & Setup
 
 ### Prerequisites
