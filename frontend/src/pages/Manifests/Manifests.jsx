@@ -6,10 +6,15 @@ import CargoSpecs from './components/CargoSpecs';
 import SystemAlerts from './components/SystemAlerts';
 import LiveTelemetry from './components/LiveTelemetry';
 import StatCards from './components/StatCards';
+import SEO from '../../components/Common/SEO';
 
 export default function Manifests() {
   return (
     <div className="p-6 md:p-10 max-w-7xl mx-auto flex flex-col h-full animate-fade-in">
+      <SEO 
+        title="Shipment Live Track" 
+        description="Real-time telemetry and manifest tracking for active cargo shipments. Monitor transit optimal paths and cargo specs." 
+      />
       {/* Top Navigation / Page Header */}
       <div className="flex justify-between items-end border-b border-sg-border pb-6 mb-8">
         <div>

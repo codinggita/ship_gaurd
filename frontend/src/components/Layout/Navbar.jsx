@@ -1,7 +1,18 @@
-import { Bell, User, Activity } from 'lucide-react';
-import { NavLink } from 'react-router-dom';
+import { useState } from 'react';
+import { Bell, User, Activity, LogOut } from 'lucide-react';
+import { NavLink, useNavigate } from 'react-router-dom';
+import { useAuth } from '../../context/AuthContext';
 
 export default function Navbar() {
+  const [showDropdown, setShowDropdown] = useState(false);
+  const { logout, user } = useAuth();
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    logout();
+    navigate('/login');
+  };
+
   return (
     <header className="h-16 bg-sg-dark border-b border-sg-border flex items-center justify-between px-6 shrink-0 relative z-10">
       <div className="flex items-center space-x-8">
@@ -43,9 +54,40 @@ export default function Navbar() {
           <Bell className="w-5 h-5" />
           <span className="absolute top-0 right-0 w-2 h-2 bg-sg-red rounded-full border border-sg-dark"></span>
         </button>
-        <button className="hover:text-sg-text transition-colors border border-sg-border p-1 rounded-sm">
-          <User className="w-5 h-5" />
-        </button>
+        
+        {/* User Profile Dropdown */}
+        <div className="relative">
+          <button 
+            onClick={() => setShowDropdown(!showDropdown)}
+            className="hover:text-sg-text transition-colors border border-sg-border p-1 rounded-sm flex items-center justify-center focus:outline-none focus:ring-1 focus:ring-sg-red"
+          >
+            <User className="w-5 h-5" />
+          </button>
+          
+          {showDropdown && (
+            <>
+              {/* Overlay to close dropdown when clicking outside */}
+              <div 
+                className="fixed inset-0 z-40"
+                onClick={() => setShowDropdown(false)}
+              ></div>
+              
+              <div className="absolute right-0 mt-2 w-48 bg-sg-card border border-sg-border shadow-lg rounded-sm overflow-hidden z-50">
+                <div className="px-4 py-3 border-b border-sg-border">
+                  <p className="text-sm font-bold text-sg-text truncate">{user?.name || 'Administrator'}</p>
+                  <p className="text-xs text-sg-text-muted truncate font-mono">{user?.email || 'admin@shipguard.local'}</p>
+                </div>
+                <button 
+                  onClick={handleLogout}
+                  className="w-full text-left px-4 py-3 text-sm text-sg-red hover:bg-sg-dark flex items-center space-x-2 transition-colors"
+                >
+                  <LogOut className="w-4 h-4" />
+                  <span className="uppercase tracking-wider font-bold">Log Out</span>
+                </button>
+              </div>
+            </>
+          )}
+        </div>
       </div>
     </header>
   );
