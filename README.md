@@ -111,4 +111,4 @@ ShipGuard OS implements **AES-256 equivalent** conceptual encryption layering fo
 ---
 
 **Developed by [Aryan Sabasana](https://github.com/Aryansabasana)**  
-**Connect:** [LinkedIn](https://www.linkedin.com/in/aryan-sabasana/) | [Twitter](https://twitter.com/AryanSabasana) | [Portfolio](https://aryansabasana.com)
+**Connect:** [LinkedIn](https://www.linkedin.com/in/aryan-sabasana-859471394/) | [Twitter](https://x.com/Aryan_Sabasana) | [Portfolio](https://aryan-sabasana-portfolio.vercel.app/)
