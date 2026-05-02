@@ -3,19 +3,19 @@ import { useNavigate } from "react-router-dom";
 import SEO from "../../components/Common/SEO";
 
 const FONTS = "https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Share+Tech+Mono&family=Rajdhani:wght@400;500;600;700&display=swap";
-const mono  = { fontFamily: "'Share Tech Mono', monospace" };
+const mono = { fontFamily: "'Share Tech Mono', monospace" };
 const bebas = { fontFamily: "'Bebas Neue', cursive" };
 
 const BOOT_LINES = ["> ENTITY_SCAN: INITIATED", "> AUTH_PROTOCOL: ARMED", "> ENROLLMENT_OPEN: TRUE"];
 
 export default function Register() {
   const navigate = useNavigate();
-  const [showPass, setShowPass]     = useState(false);
+  const [showPass, setShowPass] = useState(false);
   const [showConfirm, setShowConfirm] = useState(false);
-  const [form, setForm]             = useState({ name: "", email: "", pass: "", confirm: "" });
-  const [bootIdx, setBootIdx]       = useState(0);
-  const [scanning, setScanning]     = useState(false);
-  const [errorMsg, setErrorMsg]     = useState("");
+  const [form, setForm] = useState({ name: "", email: "", pass: "", confirm: "" });
+  const [bootIdx, setBootIdx] = useState(0);
+  const [scanning, setScanning] = useState(false);
+  const [errorMsg, setErrorMsg] = useState("");
 
   useEffect(() => {
     const link = document.createElement("link");
@@ -32,7 +32,7 @@ export default function Register() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
+
     // Email validation
     const emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
     if (!emailRegex.test(form.email)) {
@@ -55,18 +55,18 @@ export default function Register() {
     setErrorMsg("");
 
     try {
-      const res = await fetch("http://127.0.0.1:5000/api/auth/register", {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/auth/register`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ 
-          username: form.name, 
-          email: form.email, 
-          password: form.pass 
+        body: JSON.stringify({
+          username: form.name,
+          email: form.email,
+          password: form.pass
         }),
       });
-      
+
       const data = await res.json();
-      
+
       if (res.ok) {
         setTimeout(() => navigate("/login"), 800);
       } else {
@@ -81,9 +81,9 @@ export default function Register() {
 
   return (
     <div className="min-h-screen flex" style={{ fontFamily: "'Rajdhani', sans-serif" }}>
-      <SEO 
-        title="Register" 
-        description="Join ShipGuard OS. Create a new operator entity to access the advanced logistics management suite." 
+      <SEO
+        title="Register"
+        description="Join ShipGuard OS. Create a new operator entity to access the advanced logistics management suite."
       />
 
       {/* LEFT PANEL */}
