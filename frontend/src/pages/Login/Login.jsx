@@ -4,7 +4,7 @@ import { useAuth } from "../../context/AuthContext";
 import SEO from "../../components/Common/SEO";
 
 const FONTS = "https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Share+Tech+Mono&family=Rajdhani:wght@400;500;600;700&display=swap";
-const mono  = { fontFamily: "'Share Tech Mono', monospace" };
+const mono = { fontFamily: "'Share Tech Mono', monospace" };
 const bebas = { fontFamily: "'Bebas Neue', cursive" };
 
 const BOOT_LINES = ["> BOOT_SEQUENCE: OK", "> NETWORK_SYNC: ACTIVE", "> FIREWALL_LEVEL: MAXIMUM"];
@@ -13,8 +13,8 @@ export default function Login() {
   const navigate = useNavigate();
   const { login } = useAuth();
   const [showPass, setShowPass] = useState(false);
-  const [form, setForm]         = useState({ id: "", pass: "" });
-  const [bootIdx, setBootIdx]   = useState(0);
+  const [form, setForm] = useState({ id: "", pass: "" });
+  const [bootIdx, setBootIdx] = useState(0);
   const [scanning, setScanning] = useState(false);
   const [errorMsg, setErrorMsg] = useState("");
 
@@ -35,16 +35,16 @@ export default function Login() {
     e.preventDefault();
     setScanning(true);
     setErrorMsg("");
-    
+
     try {
-      const res = await fetch("http://127.0.0.1:5000/api/auth/login", {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/auth/login`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email: form.id, password: form.pass }),
       });
-      
+
       const data = await res.json();
-      
+
       if (res.ok) {
         setTimeout(() => {
           login(data, data.token);
@@ -62,9 +62,9 @@ export default function Login() {
 
   return (
     <div className="min-h-screen flex" style={{ fontFamily: "'Rajdhani', sans-serif" }}>
-      <SEO 
-        title="Login" 
-        description="Access the secure ShipGuard OS terminal. Authenticate to manage tactical logistics and fleet operations." 
+      <SEO
+        title="Login"
+        description="Access the secure ShipGuard OS terminal. Authenticate to manage tactical logistics and fleet operations."
       />
 
       {/* LEFT PANEL */}
@@ -158,12 +158,12 @@ export default function Login() {
         {/* QR badge */}
         <div className="absolute top-10 right-10 w-[56px] h-[56px] border border-[#1F2937] bg-[#0F0F0F] p-3 flex items-center justify-center">
           <svg viewBox="0 0 32 32" width="38" height="38">
-            {[[0,0,10,10],[18,0,10,10],[0,18,10,10]].map(([x,y,w,h],i) => (
-              <rect key={i} x={x} y={y} width={w} height={h} fill="none" stroke="#374151" strokeWidth="2"/>
+            {[[0, 0, 10, 10], [18, 0, 10, 10], [0, 18, 10, 10]].map(([x, y, w, h], i) => (
+              <rect key={i} x={x} y={y} width={w} height={h} fill="none" stroke="#374151" strokeWidth="2" />
             ))}
-            {[[3,3],[21,3],[3,21]].map(([x,y],i) => <rect key={i} x={x} y={y} width="4" height="4" fill="#374151"/>)}
-            {[[14,6],[18,10],[14,10],[18,14],[22,14],[14,14],[18,18],[22,18],[14,22],[22,22],[18,22]].map(([x,y],i) =>
-              <rect key={i} x={x} y={y} width="4" height="4" fill="#1F2937"/>
+            {[[3, 3], [21, 3], [3, 21]].map(([x, y], i) => <rect key={i} x={x} y={y} width="4" height="4" fill="#374151" />)}
+            {[[14, 6], [18, 10], [14, 10], [18, 14], [22, 14], [14, 14], [18, 18], [22, 18], [14, 22], [22, 22], [18, 22]].map(([x, y], i) =>
+              <rect key={i} x={x} y={y} width="4" height="4" fill="#1F2937" />
             )}
           </svg>
         </div>
