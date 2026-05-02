@@ -1,6 +1,7 @@
 # ShipGuard OS | Tactical Logistics & Claim Protection Platform
 
-![ShipGuard Banner](https://api.dicebear.com/7.x/shapes/svg?seed=ShipGuard&backgroundColor=0A0A0A)
+**Developer:** [Aryan Sabasana](https://github.com/Aryansabasana)  
+**Connect:** [LinkedIn](https://www.linkedin.com/in/aryan-sabasana/) | [Twitter](https://twitter.com/AryanSabasana) | [Portfolio](https://aryansabasana.com)
 
 **ShipGuard OS** is a high-fidelity, tactical logistics management platform designed to bridge the gap between courier services and shippers. It leverages advanced data visualization, real-time telemetry, and AI-driven risk assessment to ensure package safety and streamline the compensation process.
 
