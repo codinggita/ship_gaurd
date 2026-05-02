@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
+import SEO from "../../components/Common/SEO";
 
 const FONTS = "https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Share+Tech+Mono&family=Rajdhani:wght@400;500;600;700&display=swap";
 const mono  = { fontFamily: "'Share Tech Mono', monospace" };
@@ -36,7 +37,7 @@ export default function Login() {
     setErrorMsg("");
     
     try {
-      const res = await fetch("http://localhost:5000/api/auth/login", {
+      const res = await fetch("http://127.0.0.1:5000/api/auth/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email: form.id, password: form.pass }),
@@ -61,6 +62,10 @@ export default function Login() {
 
   return (
     <div className="min-h-screen flex" style={{ fontFamily: "'Rajdhani', sans-serif" }}>
+      <SEO 
+        title="Login" 
+        description="Access the secure ShipGuard OS terminal. Authenticate to manage tactical logistics and fleet operations." 
+      />
 
       {/* LEFT PANEL */}
       <div className="w-[38%] bg-[#0A0A0A] flex flex-col justify-between px-12 py-12 relative overflow-hidden hidden lg:flex">

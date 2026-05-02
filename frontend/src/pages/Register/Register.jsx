@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import SEO from "../../components/Common/SEO";
 
 const FONTS = "https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Share+Tech+Mono&family=Rajdhani:wght@400;500;600;700&display=swap";
 const mono  = { fontFamily: "'Share Tech Mono', monospace" };
@@ -54,7 +55,7 @@ export default function Register() {
     setErrorMsg("");
 
     try {
-      const res = await fetch("http://localhost:5000/api/auth/register", {
+      const res = await fetch("http://127.0.0.1:5000/api/auth/register", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ 
@@ -80,6 +81,10 @@ export default function Register() {
 
   return (
     <div className="min-h-screen flex" style={{ fontFamily: "'Rajdhani', sans-serif" }}>
+      <SEO 
+        title="Register" 
+        description="Join ShipGuard OS. Create a new operator entity to access the advanced logistics management suite." 
+      />
 
       {/* LEFT PANEL */}
       <div className="w-[38%] bg-[#0A0A0A] flex flex-col justify-between px-12 py-12 relative overflow-hidden hidden lg:flex">
