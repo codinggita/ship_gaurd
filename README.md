@@ -1,8 +1,5 @@
 # ShipGuard OS | Tactical Logistics & Claim Protection Platform
 
-**Developer:** [Aryan Sabasana](https://github.com/Aryansabasana)  
-**Connect:** [LinkedIn](https://www.linkedin.com/in/aryan-sabasana/) | [Twitter](https://twitter.com/AryanSabasana) | [Portfolio](https://aryansabasana.com)
-
 **ShipGuard OS** is a high-fidelity, tactical logistics management platform designed to bridge the gap between courier services and shippers. It leverages advanced data visualization, real-time telemetry, and AI-driven risk assessment to ensure package safety and streamline the compensation process.
 
 ---
@@ -113,4 +110,5 @@ ShipGuard OS implements **AES-256 equivalent** conceptual encryption layering fo
 
 ---
 
-**Developed by the ShipGuard Tactical Team. Powered by Centam.OS/Logistics.**
+**Developed by [Aryan Sabasana](https://github.com/Aryansabasana)**  
+**Connect:** [LinkedIn](https://www.linkedin.com/in/aryan-sabasana/) | [Twitter](https://twitter.com/AryanSabasana) | [Portfolio](https://aryansabasana.com)
