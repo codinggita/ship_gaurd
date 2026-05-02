@@ -3,6 +3,7 @@ import {
   BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip as RechartsTooltip, ResponsiveContainer, Cell
 } from 'recharts';
 import { Activity, ShieldAlert, Zap, AlertTriangle, ChevronRight, Power, TerminalSquare } from 'lucide-react';
+import SEO from '../../components/Common/SEO';
 
 const MOCK_DATA = [
   { name: 'N-Alpha', load: 45, status: 'stable' },
@@ -35,6 +36,10 @@ export default function Dashboard() {
 
   return (
     <div className="p-6 md:p-8 space-y-8 max-w-7xl mx-auto">
+      <SEO 
+        title="Dashboard" 
+        description="Overview of global logistics traffic, system integrity, and active recovery ratios." 
+      />
       {/* HEADER SECTION */}
       <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-sg-border pb-4">
         <div>
